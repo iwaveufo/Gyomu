@@ -1,6 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('✅ Gyōmu: fully loaded & interactive');
 
+    // ----- Language Switcher -----
+    const langSwitch = document.getElementById('langSwitch');
+    let currentLang = 'nl';
+
+    function applyLanguage(lang) {
+        var _lang = lang;
+        document.querySelectorAll('[data-' + _lang + ']').forEach(function(el) {
+            el.textContent = el.getAttribute('data-' + _lang);
+        });
+    }
+
+    function switchLanguage() {
+        currentLang = currentLang === 'nl' ? 'en' : 'nl';
+        applyLanguage(currentLang);
+        if (langSwitch) langSwitch.textContent = currentLang.toUpperCase();
+        localStorage.setItem('gyomu-lang', currentLang);
+    }
+
+    if (langSwitch) {
+        const savedLang = localStorage.getItem('gyomu-lang');
+        if (savedLang) {
+            currentLang = savedLang;
+        }
+        applyLanguage(currentLang);
+        if (langSwitch) langSwitch.textContent = currentLang.toUpperCase();
+        langSwitch.addEventListener('click', switchLanguage);
+    }
+
     // ----- Scroll reveal animations -----
     const revealOnScroll = () => {
         const sections = document.querySelectorAll('.section');
