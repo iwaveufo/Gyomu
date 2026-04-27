@@ -44,6 +44,32 @@ img[src*="images/"] {
     animation: imgFadeIn 0.6s ease forwards;
 }
 
+img.cloud-visible {
+    opacity: 1 !important;
+    animation: none !important;
+}
+
+.floating-cloud-left {
+    width: 180px;
+    position: absolute;
+    top: 40%;
+    left: 15%;
+    z-index: 2000;
+    opacity: 1 !important;
+    animation: floatUp 6s ease-in-out infinite;
+}
+
+.floating-cloud-right {
+    width: 160px;
+    position: absolute;
+    bottom: 25%;
+    right: 15%;
+    z-index: 2000;
+    opacity: 1 !important;
+    animation: floatUp 8s ease-in-out infinite;
+    animation-delay: -3s;
+}
+
 @keyframes imgFadeIn {
     to { opacity: 1; }
 }
@@ -218,11 +244,27 @@ section[id] {
 }
 
 .brand-name-logo {
-    width: 340px;
+    width: 680px;
     height: auto;
     margin: 0 auto 1rem;
     filter: drop-shadow(0 8px 30px rgba(239, 35, 60, 0.4));
     animation: logoScale 1s ease-out 0.3s both;
+}
+
+.sun-effect {
+    filter: drop-shadow(0 0 40px rgba(239, 35, 60, 0.8)) drop-shadow(0 0 80px rgba(239, 35, 60, 0.5));
+    animation: sunGlow 3s ease-in-out infinite !important;
+}
+
+@keyframes sunGlow {
+    0%, 100% { 
+        filter: drop-shadow(0 0 40px rgba(239, 35, 60, 0.8)) drop-shadow(0 0 80px rgba(239, 35, 60, 0.5));
+        transform: scale(1);
+    }
+    50% { 
+        filter: drop-shadow(0 0 60px rgba(239, 35, 60, 1)) drop-shadow(0 0 100px rgba(239, 35, 60, 0.7));
+        transform: scale(1.05);
+    }
 }
 
 @keyframes logoScale {
@@ -317,6 +359,11 @@ section[id] {
     opacity: 0.85;
 }
 
+.sun-image {
+    width: 280px;
+    transform: translateY(-50%);
+}
+
 .floating-cloud {
     width: 200px;
     height: auto;
@@ -333,6 +380,16 @@ section[id] {
 @keyframes floatUp {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-20px); }
+}
+
+@keyframes sunPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.08); opacity: 0.95; }
+}
+
+@keyframes sunRise {
+    0% { transform: translateY(30px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
 }
 
 /* Additional animated clouds at top - positioned around the sun */
@@ -770,14 +827,23 @@ section[id] {
         grid-template-columns: 1fr;
         gap: 2.5rem;
     }
-    .hero-cloud-right {
-        right: -20px;
-        top: auto;
-        bottom: 15%;
-        transform: none;
+    .sun-image {
+        width: 120px !important;
+        top: 15% !important;
+        right: 5% !important;
+        transform: none !important;
     }
-    .floating-cloud {
+    .floating-cloud-left,
+    .floating-cloud-right {
+        display: none;
+    }
+    .hero-cloud-right,
+    .hero-cloud-right img {
         width: 100px;
+        right: -10px;
+        top: auto;
+        bottom: 10%;
+        transform: none;
     }
     .katakana {
         height: 110px;
