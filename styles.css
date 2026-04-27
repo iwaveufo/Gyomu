@@ -146,6 +146,23 @@ section[id] {
     gap: 1.5rem;
 }
 
+.lang-switch {
+    background: transparent;
+    border: 2px solid #f8f4eb;
+    color: #f8f4eb;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.lang-switch:hover {
+    background: #f8f4eb;
+    color: #0a1325;
+}
+
 .instagram-icon svg {
     transition: transform 0.2s;
 }
