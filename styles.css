@@ -163,6 +163,23 @@ section[id] {
     color: #0a1325;
 }
 
+.mobile-lang-switch {
+    background: transparent;
+    border: 2px solid #f8f4eb;
+    color: #f8f4eb;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+.lang-switch:hover {
+    background: #f8f4eb;
+    color: #0a1325;
+}
+
 .instagram-icon svg {
     transition: transform 0.2s;
 }
