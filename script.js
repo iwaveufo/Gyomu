@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('✅ Gyōmu: fully loaded & interactive');
 
     // ----- Language Switcher -----
-    const langSwitch = document.getElementById('langSwitch');
-    let currentLang = 'nl';
+    var langSwitch = document.getElementById('langSwitch');
+    var langSwitchMobile = document.getElementById('langSwitchMobile');
+    var currentLang = 'nl';
 
     function applyLanguage(lang) {
-        var _lang = lang;
-        document.querySelectorAll('[data-' + _lang + ']').forEach(function(el) {
-            el.textContent = el.getAttribute('data-' + _lang);
+        document.querySelectorAll('[data-' + lang + ']').forEach(function(el) {
+            el.textContent = el.getAttribute('data-' + lang);
         });
     }
 
@@ -16,17 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
         currentLang = currentLang === 'nl' ? 'en' : 'nl';
         applyLanguage(currentLang);
         if (langSwitch) langSwitch.textContent = currentLang.toUpperCase();
+        if (langSwitchMobile) langSwitchMobile.textContent = currentLang.toUpperCase();
         localStorage.setItem('gyomu-lang', currentLang);
     }
 
-    if (langSwitch) {
-        const savedLang = localStorage.getItem('gyomu-lang');
+    if (langSwitch || langSwitchMobile) {
+        var savedLang = localStorage.getItem('gyomu-lang');
         if (savedLang) {
             currentLang = savedLang;
         }
         applyLanguage(currentLang);
         if (langSwitch) langSwitch.textContent = currentLang.toUpperCase();
-        langSwitch.addEventListener('click', switchLanguage);
+        if (langSwitchMobile) langSwitchMobile.textContent = currentLang.toUpperCase();
+        if (langSwitch) langSwitch.addEventListener('click', switchLanguage);
+        if (langSwitchMobile) langSwitchMobile.addEventListener('click', switchLanguage);
     }
 
     // ----- Scroll reveal animations -----
